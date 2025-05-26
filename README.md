@@ -29,14 +29,14 @@
 ## Dataset
 
 Offline features can accelerate inference. You can extract features from the [THUMOS14] dataset using [CoCa] as follows:
-    ```sh
+    ```bash
     python extract_features.py --save_dir ./output --video_anno_path ./meta/thumos_annotations.json --video_path_file ./videos
     ```
 
 ## Results
 
 The results on the THUMOS dataset using the 75%-25% split with split strategy 0 can be obtained by running:
-    ```sh
+    ```bash
     python evaluate.py
     ```
 The implementation details will be released upon acceptance.
