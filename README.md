@@ -1,4 +1,12 @@
-# Training-Free Zero-Shot Temporal Action Detection with Vision-Language Models
+# "Training-Free Zero-Shot Temporal Action Detection with Vision-Language Models
+
+<!--
+[Michaël Defferrard](https://deff.ch),
+[Kirell Benzi](https://kirellbenzi.com),
+[Pierre Vandergheynst](https://people.epfl.ch/pierre.vandergheynst),
+[Xavier Bresson](https://www.ntu.edu.sg/home/xbresson). 
+International Society for Music Information Retrieval Conference (ISMIR), 2017.\
+-->
 
 ## ABSTRACT
 
@@ -30,8 +38,10 @@
 
 Offline features can accelerate inference. You can extract features from the [THUMOS14] dataset using [CoCa] as follows:
 ```bash
- python extract_features.py --save_dir ./output --video_anno_path ./meta/thumos_annotations.json --video_path_file ./videos
+python extract_features.py --save_dir ./output --video_anno_path ./meta/thumos_annotations.json --video_path_file ./videos
 ```
+[THUMOS14]:https://www.crcv.ucf.edu/THUMOS14/home.html
+[CoCa]: https://arxiv.org/abs/2205.01917
 
 ## Results
 
