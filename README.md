@@ -1,4 +1,4 @@
-# "Training-Free Zero-Shot Temporal Action Detection with Vision-Language Models
+# Training-Free Zero-Shot Temporal Action Detection with Vision-Language Models
 
 <!--
 [Michaël Defferrard](https://deff.ch),
