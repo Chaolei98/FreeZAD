@@ -1,12 +1,4 @@
-# "Training-Free Zero-Shot Temporal Action Detection with Vision-Language Models
-
-<!--
-[Michaël Defferrard](https://deff.ch),
-[Kirell Benzi](https://kirellbenzi.com),
-[Pierre Vandergheynst](https://people.epfl.ch/pierre.vandergheynst),
-[Xavier Bresson](https://www.ntu.edu.sg/home/xbresson). 
-International Society for Music Information Retrieval Conference (ISMIR), 2017.\
--->
+# Training-Free Zero-Shot Temporal Action Detection with Vision-Language Models
 
 ## ABSTRACT
 
