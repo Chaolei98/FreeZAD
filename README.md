@@ -60,7 +60,7 @@ The implementation details (inference code) will be released upon acceptance.
 
 ## :warning: Acknowledgments and Licenses
 
-Please cite our work if you use our code or data.
+* Please cite our work if you use our code or data.
 
 ```
 @article{han2025training,
