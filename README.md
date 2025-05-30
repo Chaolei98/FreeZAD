@@ -58,7 +58,7 @@ python evaluate.py
 The implementation details (inference code) will be released upon acceptance.
 
 
-## Acknowledgments and Licenses
+## :warning: Acknowledgments and Licenses
 
 Please cite our work if you use our code or data.
 
