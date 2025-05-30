@@ -34,6 +34,12 @@ International Society for Music Information Retrieval Conference (ISMIR), 2017.\
 
 * Paper: [`arXiv:2501.13795`](https://arxiv.org/abs/2501.13795)
 
+## 🛠 Environment
+Python==3.8.19
+Torch==2.3.0+cu121
+Numpy==1.24.4
+Pandas==2.0.3
+
 ## Dataset
 
 Offline features can accelerate inference. You can extract features from the [THUMOS14] dataset using [CoCa] as follows:
@@ -49,7 +55,7 @@ The results on the THUMOS dataset using the 75%-25% split with split strategy 0 
 ```bash
 python evaluate.py
 ```
-The implementation details will be released upon acceptance.
+The implementation details (inference code) will be released upon acceptance.
 
 
 ## Acknowledgments and Licenses
