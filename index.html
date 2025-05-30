@@ -1,1 +1,40 @@
-<h1> This is the visualziation of FreeZAD </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Training-Free Zero-Shot Temporal Action Detection with Vision-Language Models</title>
+
+    <!-- 引入 Bootstrap 和自定义样式 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css"> <!-- 你可以自己定义 style.css -->
+</head>
+<body>
+
+<!-- 标题区 -->
+<div class="container text-center" style="margin-top: 40px;">
+    <h1>Training-Free Zero-Shot Temporal Action Detection with Vision-Language Models</h1>
+    <div class="authors">
+        <p>
+            Chaolei Han<sup>1</sup>, Hongsong Wang<sup>1</sup>, Jidong Kuang<sup>1</sup>, Lei Zhang<sup>2</sup>, Jie Gui<sup>1</sup> <br>
+            <sup>1</sup>Southeast University &nbsp; <sup>2</sup>Nanjing Normal University
+        </p>
+        <p>
+            <a href="https://arxiv.org/abs/2501.13795" target="_blank">[Paper]</a>
+            <a href="https://github.com/Chaolei98/FreeZAD" target="_blank">[Code]</a>
+            <!-- <a href="poster.pdf" target="_blank">[Poster]</a> -->
+        </p>
+    </div>
+</div>
+
+<!-- 摘要区 -->
+<div class="container">
+    <h2>Abstract</h2>
+    <p>
+        Existing zero-shot temporal action detection (ZSTAD) methods predominantly use fully supervised or unsupervised strategies to recognize unseen activities. However, these training-based methods are susceptible to domain shifts and entail high computational costs. Unlike previous works, we propose a training-\textbf{Free} \textbf{Z}ero-shot temporal \textbf{A}ction \textbf{D}etection (FreeZAD) method, leveraging image-pretrained vision-language models (VLMs) to directly classify and localize unseen activities within untrimmed videos.
+We mitigate the need for explicit temporal modeling and reliance on pseudo-label quality by designing the Logarithmic decay weighted Outer-Inner-Contrastive Score (LogOIC) and frequency-based actionness calibration.
+Furthermore, we introduce a test-time adaptation (TTA) strategy using Prototype-Centric Sampling (PCS) to expand FreeZAD, enabling VLMs to adapt more effectively for ZSTAD.
+Extensive experiments on the THUMOS14 and ActivityNet-1.3 datasets demonstrate that our training-free method outperforms state-of-the-art unsupervised methods while requiring only 1/13 of the runtime. When equipped with TTA, the enhanced method further narrows the gap with fully supervised training methods of ZSTAD.
+    </p>
+</div>
