@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 from tabulate import tabulate
+import argparse
+import importlib
 
 
 def compute_average_precision_detection(ground_truth, prediction, tiou_thresholds):
@@ -135,42 +137,77 @@ def segment_iou(target_segment, candidate_segments):
     tIoU = segments_intersection.astype(float) / segments_union
     return tIoU
 
-if __name__ == "__main__":
 
-    ground_truth = pd.read_csv("./ground_truth.csv")
-    predicted = pd.read_csv("./predicted.csv")
+def get_cls_name(setting, split):
 
-    cls_names = ['BaseballPitch', 'HammerThrow', 'PoleVault', 'SoccerPenalty', 'ThrowDiscus']
+    dict_test_name = (
+            f"t2_dict_test_thumos_{split}"
+            if setting == 50
+            else f"t1_dict_test_thumos_{split}" if setting == 75 else None
+        )
+    
+    dict_test = getattr(
+        importlib.import_module("config.zero_shot"), dict_test_name, None
+    )
+    cls_names = list(dict_test.keys())
+
+    return cls_names
+
+def main(args):
+
+    setting = args.setting
     tiou_thresholds = np.array([0.3, 0.4, 0.5, 0.6, 0.7])
 
-    ground_truth_by_label = ground_truth.groupby("label")
-    prediction_by_label = predicted.groupby("label")
-    tiou_all = np.empty((0,))
-    ap_all = np.zeros((len(cls_names), len(tiou_thresholds)))
-    print("\n")
-    for i, class_label in enumerate(cls_names):
-        if class_label in predicted["label"].unique():
-            ground_truth_class = ground_truth_by_label.get_group(
-                class_label
-            ).reset_index(drop=True)
-            prediction_class = prediction_by_label.get_group(class_label).reset_index(
-                drop=True
-            )
-            ap, tiou = compute_average_precision_detection(
-                ground_truth_class, prediction_class, tiou_thresholds
-            )
-            ap = [round(x * 100, 1) for x in ap]
-            ap_all[i] = ap
-            print(class_label, ap)
-            print("\n")
+    ap_all_splits = []
+    tiou_all_splits = []
 
-            tiou_all = np.append(tiou_all, tiou)
+    for split in range(10):
+        print(f"\n===== Evaluating split {split} =====")
 
-    table_data = []
-    for i, class_label in enumerate(cls_names):
-        table_data.append([class_label] + list(ap_all[i]))
-    table_data.append(["IoU"] + list(tiou_all))
+        gt_path = f"./gt_csv/{setting}/{split}.csv"
+        pred_path = f"./predict_csv/{setting}/{split}.csv"
 
-    ap_all = np.mean(ap_all, axis=0)
-    print(ap_all)
-    print(f"avg_AP: {np.mean(ap_all):.4f}")
+        ground_truth = pd.read_csv(gt_path)
+        predicted = pd.read_csv(pred_path)
+        cls_names = get_cls_name(setting, split)
+
+        ground_truth_by_label = ground_truth.groupby("label")
+        prediction_by_label = predicted.groupby("label")
+        tiou_all = np.empty((0,))
+        ap_all = np.zeros((len(cls_names), len(tiou_thresholds)))
+
+        for i, class_label in enumerate(cls_names):
+            if class_label in predicted["label"].unique():
+                ground_truth_class = ground_truth_by_label.get_group(class_label).reset_index(drop=True)
+                prediction_class = prediction_by_label.get_group(class_label).reset_index(drop=True)
+
+                ap, tiou = compute_average_precision_detection(
+                    ground_truth_class, prediction_class, tiou_thresholds
+                )
+                ap = [round(x * 100, 1) for x in ap]
+                ap_all[i] = ap
+                print(class_label, ap)
+
+                tiou_all = np.append(tiou_all, tiou)
+
+        ap_all_splits.append(ap_all)
+        tiou_all_splits.append(tiou_all)
+
+        print(f"Mean AP for split {split}: {np.mean(ap_all):.2f}")
+
+    # final results
+    ap_all_splits = np.stack(ap_all_splits, axis=0) 
+    mean_ap_across_splits = np.mean(ap_all_splits, axis=(0, 1)) 
+    print(f"\n===== Overall Evaluation for setting {setting} =====")
+    print("Average AP across all splits (per threshold):", 
+      [f"{x:.2f}" for x in mean_ap_across_splits])
+    mean_val = np.mean(mean_ap_across_splits)
+    print(f"Mean of AP across all splits: {mean_val:.2f}")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--setting", type=int, required=True, help="Split setting folder name, 75 or 50")
+    args = parser.parse_args()
+
+    main(args)
+    
