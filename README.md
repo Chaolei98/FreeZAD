@@ -8,7 +8,7 @@
 International Society for Music Information Retrieval Conference (ISMIR), 2017.\
 -->
 
-## ABSTRACT
+## 📖 ABSTRACT
 
 > Existing zero-shot temporal action detection (ZS-TAD) 
 > methods predominantly use fully supervised or unsuper-
@@ -40,7 +40,7 @@ Torch==2.3.0+cu121
 Numpy==1.24.4  
 Pandas==2.0.3
 
-## :movie_camera: Dataset
+## 🎥 Dataset
 
 Offline features can accelerate inference. You can extract features from the [THUMOS14] dataset using [CoCa] as follows:
 ```bash
@@ -49,16 +49,17 @@ python extract_features.py --save_dir ./output --video_anno_path ./meta/thumos_a
 [THUMOS14]:https://www.crcv.ucf.edu/THUMOS14/home.html
 [CoCa]: https://arxiv.org/abs/2205.01917
 
-## 🚀 Results
+## 🚀 Evaluate
 
-The results on the THUMOS dataset using the 75%-25% split with split strategy 0 can be obtained by running:
+The results of FreeZAD on the THUMOS dataset can be obtained by running:
 ```bash
-python evaluate.py
+python evaluate.py --setting 75
+python evaluate.py --setting 50
 ```
-The implementation details (inference code) will be released upon acceptance.
+* The implementation details will be released upon acceptance.
 
 
-## :warning: Acknowledgments and Licenses
+## ⚠️ Acknowledgments and Licenses
 
 * Please cite our work if you use our code or data.
 
