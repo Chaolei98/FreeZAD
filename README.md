@@ -49,6 +49,13 @@ python extract_features.py --save_dir ./output --video_anno_path ./meta/thumos_a
 [THUMOS14]:https://www.crcv.ucf.edu/THUMOS14/home.html
 [CoCa]: https://arxiv.org/abs/2205.01917
 
+## 🧪 Inference
+Please follow the deployment instructions in [T3AL](https://github.com/benedettaliberatori/T3AL), then replace the original T3AL model with our FreeZAD. You can run inference using the same command:
+```bash
+python src/train.py experiment=tf_thumos data=thumos model.split=0 model.setting=75 data.nsplit=0 exp_name=thumos model.video_path=</path/to/data/>
+```
+Under the split 0 setting, this yields 13.98 avg_AP.
+
 ## 🚀 Evaluate
 
 The results of FreeZAD on the THUMOS dataset can be obtained by running:
