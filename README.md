@@ -73,4 +73,6 @@ python evaluate.py --setting 50
 ```
 
 * The code in this repository is released under the [MIT license](LICENSE.txt).
+* This repository is based on and modified from the open-source project [T3AL](https://github.com/benedettaliberatori/T3AL). We sincerely thank the authors for their valuable open-source contributions.
+
 
